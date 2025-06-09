@@ -106,8 +106,8 @@ const UpdateProduct = () => {
     imageUrls.forEach((currImg) => {
       myForm.append("images", currImg.url);
     });
-
-    dispatch(updateProduct(productId, myForm));
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    dispatch(updateProduct(productId, myForm,token));
   };
 
   return (

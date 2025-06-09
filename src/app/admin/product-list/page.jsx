@@ -39,11 +39,13 @@ function ProductList() {
       toast.success("Product Deleted Successfully");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-    dispatch(getAdminProducts());
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    dispatch(getAdminProducts(token));
   }, [dispatch, error, deleteError, isDeleted]);
 
   const deleteProductHandler = (id) => {
-    dispatch(deleteProduct(id));
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    dispatch(deleteProduct(id,token));
   };
 
   const rows = products?.map((item) => ({

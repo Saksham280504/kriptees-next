@@ -1,6 +1,7 @@
 // src/utils/DisplayMoney.js
 
 // Display Money In Indian Format
+
 export const displayMoney = function (num) {
   const numFormat = new Intl.NumberFormat("en-IN", {
     style: "currency",

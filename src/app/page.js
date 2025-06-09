@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import { clearErrors, getProduct } from "@/redux/actions/productAction";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
 import ProductCard from "@/components/Home/ProductCard";
-import styles from "./home.module.css";
 
 import img from "../../public/ecommerce-images/banner.png";
 import image from "../../public/ecommerce-images/downimg.png";
@@ -92,23 +91,34 @@ export default function HomePage() {
   return (
     <>
       <MetaData title="Kriptees" />
-      <div className={styles['Home_Page']}>
+      <div className="w-full">
         <div className="w-full">
-          <Image src={img} alt="Desktop Banner" className="w-full h-auto hidden md:block" />
-          <Image src={mobBanner} alt="Mobile Banner" className="w-full pt-14 h-auto block md:hidden" />
+          <Image
+            src={img}
+            alt="Desktop Banner"
+            className="w-full h-auto hidden md:block"
+          />
+          <Image
+            src={mobBanner}
+            alt="Mobile Banner"
+            className="w-full pt-14 h-auto block md:hidden"
+          />
         </div>
 
-        <div className="bg-black text-white py-2 overflow-hidden" style={{ fontFamily: "Montserrat", letterSpacing: "0.2rem" }}>
-          <div className="marquee flex whitespace-nowrap">
-            <span className="text-sm md:text-[1.2rem] uppercase tracking-widest px-4 inline-block">
-              NEW ARRIVALS EVERY MONTH! &nbsp; NEW ARRIVALS EVERY MONTH! &nbsp; NEW ARRIVALS EVERY MONTH! &nbsp; NEW ARRIVALS EVERY MONTH! &nbsp;
+        <div className="bg-black text-white py-2 overflow-hidden font-montserrat tracking-widest">
+          <div className="custom-animate-marquee">
+            <span className="text-sm md:text-[1.2rem] uppercase tracking-widest px-4 inline-block whitespace-nowrap">
+              NEW ARRIVALS EVERY MONTH! &nbsp; NEW ARRIVALS EVERY MONTH! &nbsp;
+              NEW ARRIVALS EVERY MONTH! &nbsp; NEW ARRIVALS EVERY MONTH!
             </span>
           </div>
         </div>
 
         {topPicks.length > 0 && (
           <>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-widest py-4 mx-4 md:m-8 md:px-10 md:py-4">TOP PICKS</h2>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-widest py-4 mx-4 md:m-8 md:px-10 md:py-4">
+              TOP PICKS
+            </h2>
             <div className="mt-4 md:mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 px-3 md:px-8">
               {topPicks.slice(0, 8).map((product) => (
                 <ProductCard key={product._id} product={product} />
@@ -131,8 +141,10 @@ export default function HomePage() {
 
         {Tshirt.length > 0 && (
           <>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-widest py-4 mx-4 md:m-8 md:px-10 md:py-4">T-SHIRT</h2>
-            <div className="mt-4 md:mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 px-3 md:px-8">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-widest py-4 mx-4 md:m-8 md:px-10 md:py-4">
+              T-SHIRT
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 px-3 md:px-8">
               {Tshirt.slice(0, 4).map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
@@ -142,8 +154,19 @@ export default function HomePage() {
                 onClick={() => router.push("/Tshirt")}
                 className="p-2 rounded-full border border-black hover:bg-gray-300 transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 8l8 8 8-8" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 8l8 8 8-8"
+                  />
                 </svg>
               </button>
             </div>
@@ -152,8 +175,10 @@ export default function HomePage() {
 
         {hoodies.length > 0 && (
           <>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-widest py-4 mx-4 md:m-8 md:px-10 md:py-4">HOODIES</h2>
-            <div className="mt-4 md:mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 px-3 md:px-8">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-widest py-4 mx-4 md:m-8 md:px-10 md:py-4">
+              HOODIES
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 px-3 md:px-8">
               {hoodies.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
@@ -163,19 +188,32 @@ export default function HomePage() {
                 onClick={() => router.push("/Hoodies")}
                 className="p-2 rounded-full border border-black hover:bg-gray-300 transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 8l8 8 8-8" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 md:w-8 md:h-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 8l8 8 8-8"
+                  />
                 </svg>
               </button>
             </div>
           </>
         )}
 
-        <div className="mt-8 border-y-2 border-slate-200 py-6" style={{ fontFamily: "Montserrat", letterSpacing: "0.2rem" }}>
-          <div className="hidden md:flex md:flex-row justify-center items-center gap-[20rem] tracking-widest text-center px-4">
+        <div className="mt-8 border-y-2 border-slate-200 py-6 font-montserrat tracking-widest">
+          <div className="hidden md:flex md:flex-row justify-center items-center gap-[20rem] text-center px-4">
             {features.map((feature, index) => (
               <div key={index} className="max-w-xs">
-                <h3 className="font-bold text-sm uppercase mb-1 underline underline-offset-4 py-2">{feature.title}</h3>
+                <h3 className="font-bold text-sm uppercase mb-1 underline underline-offset-4 py-2">
+                  {feature.title}
+                </h3>
                 <p className="text-xs text-gray-700">
                   {feature.lines[0]}
                   <br />
@@ -184,9 +222,11 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div className="block md:hidden flex flex-col justify-center items-center tracking-widest text-center px-4">
+          <div className="block md:hidden flex flex-col justify-center items-center text-center px-4">
             <div className="max-w-xs">
-              <h3 className="font-bold text-sm uppercase mb-1 underline underline-offset-4 py-2">{features[activeFeatureIndex].title}</h3>
+              <h3 className="font-bold text-sm uppercase mb-1 underline underline-offset-4 py-2">
+                {features[activeFeatureIndex].title}
+              </h3>
               <p className="text-xs text-gray-700">
                 {features[activeFeatureIndex].lines[0]}
                 <br />

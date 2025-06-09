@@ -4,7 +4,7 @@ import MetaData from "@/components/Layouts/MetaData/MetaData";
 const ReturnPolicyPage = () => {
   return (
     <div className="">
-      <MetaData title="Return Policy" />
+      <MetaData title="Return Policy"/>
       <div className="mt-20">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="bg-white shadow sm:rounded-lg">

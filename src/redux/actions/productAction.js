@@ -50,7 +50,6 @@ export const getProduct = (
       // when category selected by user then using another link
       if (category) {
         link = `https://kriptees-backend-ays7.onrender.com/api/v1/product?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&category=${category}`;
-
       }
       const { data } = await axios.get(link);
 
@@ -79,7 +78,6 @@ export const getProductDetails = (id) => {
 
       const { data } = await axios.get(`https://kriptees-backend-ays7.onrender.com/api/v1/product/${id}`);
 
-
       dispatch({
         type: PRODUCT_DETAILS_SUCCESS,
         payload: data.Product,
@@ -94,14 +92,13 @@ export const getProductDetails = (id) => {
 };
 
 //Add new Review
-export const newReview = (reviewData) => async (dispatch) => {
+export const newReview = (reviewData, token) => async (dispatch) => {
   try {
     dispatch({ type: NEW_REVIEW_REQUEST });
-    const token = localStorage.getItem('token');
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${token}`,
+        Authorization: token,
 
       }
     };
@@ -116,15 +113,14 @@ export const newReview = (reviewData) => async (dispatch) => {
 };
 
 // admin product request :
-export const getAdminProducts = () => async (dispatch) => {
+export const getAdminProducts = (token) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
 
-    const token = localStorage.getItem('token');
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `${token}`,
+        Authorization: token,
       }
     };
 
@@ -138,19 +134,16 @@ export const getAdminProducts = () => async (dispatch) => {
 };
 
 // Create Product
-export function createProduct(productData) {
+export function createProduct(productData,token) {
   return async function (dispatch) {
     try {
       dispatch({
         type: NEW_PRODUCT_REQUEST,
       });
-
-      const token = localStorage.getItem('token');
-
-      const config = {
+       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `${token}`,
+          Authorization: token,
         }
       };
 
@@ -176,16 +169,14 @@ export function createProduct(productData) {
 
 // Delete Product request
 
-export function deleteProduct(id) {
+export function deleteProduct(id,token) {
   return async function (dispatch) {
     try {
       dispatch({ type: DELETE_PRODUCT_REQUEST });
-
-      const token = localStorage.getItem('token');
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `${token}`,
+          Authorization: token,
         }
       };
 
@@ -200,16 +191,14 @@ export function deleteProduct(id) {
 }
 
 // updateProduct;
-export const updateProduct = (id, productData) => async (dispatch) => {
+export const updateProduct = (id, productData, token) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
     console.log(productData)
-
-    const token = localStorage.getItem('token');
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `${token}`,
+        Authorization: token,
       },
     };
 

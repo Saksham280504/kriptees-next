@@ -5,12 +5,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-import CricketBallLoader from "../Layouts/loader/Loader";
-import { NEW_REVIEW_RESET } from "@/constants/productsConstants";
-import { clearErrors, newReview } from "@/actions/productAction";
+import CricketBallLoader from "@/components/Layouts/loader/CricketBallLoader";
+import { NEW_REVIEW_RESET } from "@/redux/constants/productConstants";
+import { clearErrors, newReview } from "@/redux/actions/productAction";
 
 const ReviewCard = ({ product }) => {
-  const { isAuthenticated } = useSelector((state) => state.userData);
+  const { isAuthenticated, loading } = useSelector((state) => state.userData);
   const { success, error } = useSelector((state) => state.addNewReview);
 
   const router = useRouter();
@@ -51,6 +51,7 @@ const ReviewCard = ({ product }) => {
     myForm.set("recommend", recommend);
     myForm.set("productId", productId);
 
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
     dispatch(newReview(myForm));
     toast.success("Review posted successfully");
     handleClose();
@@ -67,6 +68,7 @@ const ReviewCard = ({ product }) => {
     }
   }, [dispatch, error, success]);
 
+  if (loading) return <CricketBallLoader />;
   return (
     <div className="m-4">
       <div className="text-2xl text-center font-bold m-8">Users Reviews</div>

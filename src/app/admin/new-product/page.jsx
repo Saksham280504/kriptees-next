@@ -80,8 +80,8 @@ const NewProduct = () => {
     }
     tags.forEach((tag) => myForm.append("tags", tag));
     imageUrls.forEach((currImg) => myForm.append("images", currImg));
-
-    dispatch(createProduct(myForm));
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    dispatch(createProduct(myForm,token));
   };
 
   return (

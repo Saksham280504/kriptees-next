@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { ADD_TO_WISHLIST, REMOVE_WISHLIST_ITEM } from '@/constants/wishlistConstants';
+import { ADD_TO_WISHLIST, REMOVE_WISHLIST_ITEM } from '@/redux/constants/wishlistConstants';
 
 // Add to Wishlist
 export const addItemToWishlist = (id) => async (dispatch, getState) => {

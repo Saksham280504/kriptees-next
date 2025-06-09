@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -186,8 +186,7 @@ function Header() {
 
             {/* CENTER: Logo */}
             <div className="flex justify-center items-center lg:flex-none">
-              <Link href="/">
-                <a className={styles['kriptees-main']}>KRIPTEES</a>
+              <Link href="/" className="text-4xl text-center pt-2">KRIPTEES
               </Link>
             </div>
 
@@ -208,8 +207,7 @@ function Header() {
                   </svg>
                 </button>
                 <div className="absolute right-0  min-w-[150px] bg-white text-black text-xs shadow-lg border border-gray-200 rounded hidden group-hover:block divide-y divide-gray-200">
-                  <Link href="/NewArrival">
-                    <a className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">NEW ARRIVALS</a>
+                  <Link href="/NewArrival" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">NEW ARRIVALS
                   </Link>
 {/*                   <Link href="/collections/kriptees-spc" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">
                     KRIPTEES SPC.
@@ -234,28 +232,23 @@ function Header() {
                   </svg>
                 </button>
                 <div className="absolute right-0  min-w-[150px] text-xs bg-white text-black shadow-lg border border-gray-200 rounded hidden group-hover:block divide-y divide-gray-200">
-                  <Link href="/Hoodies">
-                    <a className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">HOODIES</a>
+                  <Link href="/Hoodies" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">HOODIES
                   </Link>
-                  <Link href="/Sweatshirts">
-                    <a className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">SWEATSHIRTS</a>
+                  <Link href="/Sweatshirts" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">SWEATSHIRTS
                   </Link>
                 </div>
               </div>
 
-              <Link href="/Tshirt">
-                  <a className={`uppercase tracking-widest font-semibold ${
+              <Link href="/Tshirt" className={`uppercase tracking-widest font-semibold ${
                   pathname === '/Tshirt' ? 'text-blue-600' : 'hover:text-blue-600 transition'
                   }`}>
                   TSHIRTS
-                  </a>
+                  
               </Link>
 
-              <Link href="/customise">
-                  <a className={`uppercase tracking-widest font-semibold ${
-                  pathname === '/customise' ? 'uppercase tracking-widest hover' : 'text-blue-600 font-semibold transition'}`}>
+              <Link href="/customise" className={`uppercase tracking-widest font-semibold ${
+                  pathname === '/customise' ? 'text-blue-600' : 'hover: text-blue-600 transition'}`}>
                     CUSTOM
-                  </a>
               </Link>
             </nav>
 
@@ -435,8 +428,7 @@ function Header() {
                   </div>
                 ) : (
                   <div className="mb-8 text-center">
-                    <Link href="/login">
-                      <a onClick={() => setSideMenu(false)} className="uppercase text-base font-medium">SIGN IN</a>
+                    <Link href="/login" onClick={() => setSideMenu(false)} className="uppercase text-base font-medium">SIGN IN
                     </Link>
                   </div>
                 )}
@@ -446,13 +438,11 @@ function Header() {
                 style={{ fontFamily: "Montserrat", letterSpacing: "0.2rem" }}>
                   {/* Dashboard link for admin, placed right below HOME */}
                   {isAuthenticated && user?.role === "admin" && (
-                    <Link href="/admin/dashboard">
-                      <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">DASHBOARD</a>
+                    <Link href="/admin/dashboard" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">DASHBOARD
                     </Link>
                   )}
                   {/* HOME */}
-                  <Link href="/">
-                    <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOME</a>
+                  <Link href="/" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOME
                   </Link>
                   
                   {/* WISHLIST */}
@@ -472,8 +462,7 @@ function Header() {
                   </button>
                   {openSubmenu === "collections" && (
                     <div className="pl-4 space-y-2 mt-2 text-sm font-normal">
-                      <Link href="/NewArrival">
-                        <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">NEW ARRIVALS</a>
+                      <Link href="/NewArrival" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">NEW ARRIVALS
                       </Link>
 {/*                       <Link href="/collections/kriptees-spc" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">
                         KRIPTEES SPC.
@@ -490,26 +479,21 @@ function Header() {
                   </button>
                   {openSubmenu === "winterwears" && (
                     <div className="pl-4 space-y-2 mt-2 text-sm font-normal">
-                      <Link href="/Hoodies">
-                        <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOODIES</a>
+                      <Link href="/Hoodies" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOODIES
                       </Link>
-                      <Link href="/Sweatshirts">
-                        <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">SWEATSHIRTS</a>
+                      <Link href="/Sweatshirts" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">SWEATSHIRTS
                       </Link>
                     </div>
                   )}
                   {/* TSHIRTS */}
-                  <Link href="/Tshirt">
-                    <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">TSHIRTS</a>
+                  <Link href="/Tshirt" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">TSHIRTS
                   </Link>
                   {/* CUSTOM */}
-                  <Link href="/customise">
-                    <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">CUSTOM</a>
+                  <Link href="/customise" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">CUSTOM
                   </Link>
                   {/* ORDERS (simple link) */}
                   {isAuthenticated && (
-                    <Link href="/orders">
-                      <a onClick={() => setSideMenu(false)} className="block hover:text-gray-300">ORDERS</a>
+                    <Link href="/orders" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">ORDERS
                     </Link>
                   )}
                 </nav>

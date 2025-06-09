@@ -40,13 +40,12 @@ import {
 export const productsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
-    case ADMIN_PRODUCT_REQUEST: {
+    case ADMIN_PRODUCT_REQUEST:
       return {
         ...state,
         loading: true,
-        products: [],
+        products: [], // Resetting to an empty array on request
       };
-    }
 
     case ADMIN_PRODUCT_SUCCESS:
       return {
@@ -57,26 +56,30 @@ export const productsReducer = (state = { products: [] }, action) => {
     case ALL_PRODUCT_SUCCESS: {
       return {
         loading: false,
-        products: action.payload.products,
+        products: action.payload.products || [], // Ensure this is always an array
         productsCount: action.payload.productsCount,
         resultPerPage: action.payload.resultPerPage,
         totalProducts: action.payload.totalProducts,
         filterdProductCount: action.payload.filterdProductCount,
       };
     }
+
     case ALL_PRODUCT_FAIL:
     case ADMIN_PRODUCT_FAIL: {
       return {
+        ...state, // Preserve any non-error state (like initial products array)
         loading: false,
         error: action.payload,
       };
     }
+
     // Clear error
     case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
       };
+
     default:
       return state;
   }
@@ -101,7 +104,6 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
       return {
         loading: false,
         error: action.payload,
-
       };
       case PRODUCT_DETAILS_RESET:
         return {

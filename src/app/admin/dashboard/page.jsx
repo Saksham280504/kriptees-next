@@ -44,7 +44,8 @@ const Dashboard = () => {
       dispatch(clearErrors());
     }
 
-    dispatch(getAdminProducts());
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    dispatch(getAdminProducts(token));
     dispatch(getAllOrders());
     dispatch(getAllUsers());
   }, [dispatch, error, ordersError, usersError]);
