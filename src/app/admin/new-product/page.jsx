@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import MetaData from "@/components/Layouts/MetaData/MetaData";
 
-import Loader from "@/components/Layouts/loader/Loader";
-import Sidebar from "@/components/Admin/Siderbar";
-import { createProduct, clearErrors } from "@/actions/productAction";
-import { NEW_PRODUCT_RESET } from "@/constants/productsConstants";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
+import Sidebar from "@/components/Admin/Sidebar";
+import { createProduct, clearErrors } from "@/redux/actions/productAction";
+import { NEW_PRODUCT_RESET } from "@/redux/constants/productConstants";
 
 const NewProduct = () => {
   const dispatch = useDispatch();

@@ -7,10 +7,10 @@ import {
   getAllreviews,
   clearErrors,
   deleteProductReview,
-} from "@/actions/productAction";
-import Loader from "@/components/Layouts/loader/Loader";
-import Sidebar from "@/components/Admin/Siderbar";
-import { DELETE_REVIEW_RESET } from "@/constants/productsConstants";
+} from "@/redux/actions/productAction";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
+import Sidebar from "@/components/Admin/Sidebar";
+import { DELETE_REVIEW_RESET } from "@/redux/constants/productConstants";
 import Head from "next/head";
 
 export default function ProductReviews() {

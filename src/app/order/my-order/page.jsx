@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { myOrders, clearErrors, trackOrder } from "@/actions/orderAction";
-import { addItemToCart } from "@/actions/cartAction";
+import { myOrders, clearErrors, trackOrder } from "@/redux/actions/orderAction";
+import { addItemToCart } from "@/redux/actions/cartAction";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
-import CricketBallLoader from "@/components/Layouts/loader/Loader";
+import CricketBallLoader from "@/components/Layouts/loader/CricketBallLoader";
 import { toast } from "react-toastify";
 
 const MyOrder = () => {

@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import { toast } from "react-toastify";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
-import Sidebar from "@/components/Admin/Siderbar";
-import Loader from "@/components/Layouts/loader/Loader";
-import { getAllUsers, clearErrors, deleteUser } from "@/actions/userAction";
-import { DELETE_USER_RESET } from "@/constants/userConstant";
+import Sidebar from "@/components/Admin/Sidebar";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
+import { getAllUsers, clearErrors, deleteUser } from "@/redux/actions/userAction";
+import { DELETE_USER_RESET } from "@/redux/constants/userConstants";
 
 const UserList = () => {
   const dispatch = useDispatch();

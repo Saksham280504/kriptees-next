@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveShippingInfo } from "@/actions/cartAction";
+import { saveShippingInfo } from "@/redux/actions/cartAction";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
 import { toast } from "react-toastify";
 import { useRouter, usePathname } from "next/navigation";
@@ -213,7 +213,7 @@ const Shipping = () => {
                 type="submit"
                 className="
                   w-full mt-4 py-3
-                  bg-black text-white 
+                  bg-black text-white
                   text-sm font-bold uppercase tracking-wider
                   rounded
                   hover:bg-gray-800 transition-colors

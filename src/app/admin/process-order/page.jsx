@@ -6,12 +6,12 @@ import {
   updateOrder,
   clearErrors,
   getOrderDetails,
-} from "@/actions/orderAction";
-import Sidebar from "@/components/Admin/Siderbar";
+} from "@/redux/actions/orderAction";
+import Sidebar from "@/components/Admin/Sidebar";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
-import Loader from "@/components/Layouts/loader/Loader";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
 import { toast } from 'react-toastify';
-import { UPDATE_ORDER_RESET } from "@/constants/orderConstant";
+import { UPDATE_ORDER_RESET } from "@/redux/constants/orderConstants";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 

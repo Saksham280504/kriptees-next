@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { trackOrder, clearErrors } from '@/actions/orderAction';
+import { trackOrder, clearErrors } from '@/redux/actions/orderAction';
 import MetaData from '@/components/Layouts/MetaData/MetaData';
-import CricketBallLoader from '@/components/Layouts/loader/Loader';
+import CricketBallLoader from '@/components/Layouts/loader/CricketBallLoader';
 import { toast } from 'react-toastify';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
