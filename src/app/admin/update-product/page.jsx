@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from "react-toastify";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
-import Loader from "@/components/Layouts/loader/Loader";
-import Sidebar from "@/components/Admin/Siderbar";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
+import Sidebar from "@/components/Admin/Sidebar";
 import {
   updateProduct,
   clearErrors,
   getProductDetails,
-} from "@/actions/productAction";
-import { UPDATE_PRODUCT_RESET } from "@/constants/productsConstants";
+} from "@/redux/actions/productAction";
+import { UPDATE_PRODUCT_RESET } from "@/redux/constants/productConstants";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();

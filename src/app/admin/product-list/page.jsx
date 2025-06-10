@@ -6,12 +6,12 @@ import {
   clearErrors,
   getAdminProducts,
   deleteProduct,
-} from "@/actions/productAction";
+} from "@/redux/actions/productAction";
 import { useRouter } from "next/navigation";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
-import Sidebar from "@/components/Admin/Siderbar";
-import Loader from "@/components/Layouts/loader/Loader";
-import { DELETE_PRODUCT_RESET } from "@/constants/productsConstants";
+import Sidebar from "@/components/Admin/Sidebar";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
+import { DELETE_PRODUCT_RESET } from "@/redux/constants/productConstants";
 import { toast } from "react-toastify";
 import Link from "next/link";
 

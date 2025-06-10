@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllOrders, clearErrors, deleteOrder } from "@/actions/orderAction";
+import { getAllOrders, clearErrors, deleteOrder } from "@/redux/actions/orderAction";
 import { toast } from "react-toastify";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
-import Loader from "@/components/Layouts/loader/Loader";
-import Sidebar from "@/components/Admin/Siderbar";
-import { DELETE_ORDER_RESET } from "@/constants/orderConstant";
+import Loader from "@/components/Layouts/loader/CricketBallLoader";
+import Sidebar from "@/components/Admin/Sidebar";
+import { DELETE_ORDER_RESET } from "@/redux/constants/orderConstants";
 
 const OrderList = () => {
   const dispatch = useDispatch();

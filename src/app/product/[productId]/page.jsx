@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  console.log("Product ID from useParams:", id);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -45,15 +46,21 @@ const ProductDetails = () => {
     if (success) {
       dispatch({ type: PRODUCT_DETAILS_RESET });
     }
-    dispatch(getProductDetails(id));
+    // Only dispatch if id is available
+    if (id) {
+      dispatch(getProductDetails(id));
+    }
   }, [dispatch, id, error, success]);
 
 console.log("Product: ", product);
   useEffect(() => {
-      if(product?.images?.length > 0) {
-        console.log("Images: ", product.images);
+      if (product && product.images && product.images.length > 0 && product.images[0].url) {
+        // console.log("Images: ", product.images); // Optional: keep for debugging if needed
         setPreviewImg(product.images[0].url);
         setI(0);
+      } else {
+        setPreviewImg(null); // Explicitly set to null if no valid image URL is found
+        setI(0); // Reset index if no images
       }
   }, [product]);
 
@@ -181,7 +188,7 @@ console.log("Product: ", product);
                       onTouchEnd={handleTouchEnd}
                     >
                       <img
-                        src={previewImg}
+  src={previewImg || null}
                         alt="Product Main"
                         className="w-full md:aspect-[3/4] object-cover object-[45%_35%] rounded-lg"
                       />

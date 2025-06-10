@@ -10,7 +10,7 @@ import { getAllOrders } from '@/redux/actions/orderAction';
 import { getAllUsers } from '@/redux/actions/userAction';
 import Sidebar from '@/components/Admin/Sidebar';
 import MetaData from '@/components/Layouts/MetaData/MetaData';
-import Loader from '@/components/Layouts/Loader/Loader';
+import Loader from '@/components/Layouts/loader/CricketBallLoader';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
