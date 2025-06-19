@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -125,12 +126,13 @@ export default function HomePage() {
               ))}
             </div>
             <div className="flex justify-center mt-6 md:mt-8">
-              <button
-                onClick={() => router.push("/NewArrival")}
+              <Link href="/product/new-arrival" passHref>
+                <button
                 className="bg-white text-gray-800 font-Ponnala px-4 py-2 md:px-6 md:py-3 uppercase tracking-widest border border-gray-950 rounded-lg hover:bg-gray-400 transition-colors"
-              >
-                View All
-              </button>
+                >
+                  View All
+                </button>
+              </Link>
             </div>
           </>
         )}
@@ -150,8 +152,8 @@ export default function HomePage() {
               ))}
             </div>
             <div className="flex justify-center mt-6 md:mt-8">
+              <Link href="/product/t-shirt">
               <button
-                onClick={() => router.push("/Tshirt")}
                 className="p-2 rounded-full border border-black hover:bg-gray-300 transition-colors"
               >
                 <svg
@@ -169,6 +171,7 @@ export default function HomePage() {
                   />
                 </svg>
               </button>
+              </Link>
             </div>
           </>
         )}
@@ -184,8 +187,8 @@ export default function HomePage() {
               ))}
             </div>
             <div className="flex justify-center mt-6 md:mt-8">
+              <Link href="/product/hoodies">
               <button
-                onClick={() => router.push("/Hoodies")}
                 className="p-2 rounded-full border border-black hover:bg-gray-300 transition-colors"
               >
                 <svg
@@ -203,6 +206,7 @@ export default function HomePage() {
                   />
                 </svg>
               </button>
+              </Link>
             </div>
           </>
         )}

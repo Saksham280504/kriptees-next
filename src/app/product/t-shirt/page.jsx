@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getProduct } from "@/actions/productAction";
+import { clearErrors, getProduct } from "@/redux/actions/productAction";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import Head from "next/head";
 
 import ProductCard from "@/components/Home/ProductCard";
-import img from "@/../public/ecommerce images/TshirtTop.png"; // Adjust path if needed
+import img from "../../../../public/ecommerce-images/TshirtTop.png"; // Adjust path if needed
 
 export default function Tshirt() {
   const dispatch = useDispatch();

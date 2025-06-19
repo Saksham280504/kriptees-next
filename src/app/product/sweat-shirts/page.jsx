@@ -2,12 +2,12 @@
 
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getProduct } from "@/actions/productAction";
+import { clearErrors, getProduct } from "@/redux/actions/productAction";
 import { toast } from "react-toastify";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
 import ProductCard from "@/components/Home/ProductCard";
 import Image from "next/image";
-import sweatshirtBanner from "@/public/ecommerce images/SweatShirtTop.png";
+import sweatshirtBanner from "../../../../public/ecommerce-images/SweatShirtTop.png";
 
 const Sweatshirts = () => {
   const dispatch = useDispatch();

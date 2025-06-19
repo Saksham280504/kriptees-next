@@ -207,7 +207,7 @@ function Header() {
                   </svg>
                 </button>
                 <div className="absolute right-0  min-w-[150px] bg-white text-black text-xs shadow-lg border border-gray-200 rounded hidden group-hover:block divide-y divide-gray-200">
-                  <Link href="/NewArrival" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">NEW ARRIVALS
+                  <Link href="/product/new-arrival" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">NEW ARRIVALS
                   </Link>
 {/*                   <Link href="/collections/kriptees-spc" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">
                     KRIPTEES SPC.
@@ -232,23 +232,23 @@ function Header() {
                   </svg>
                 </button>
                 <div className="absolute right-0  min-w-[150px] text-xs bg-white text-black shadow-lg border border-gray-200 rounded hidden group-hover:block divide-y divide-gray-200">
-                  <Link href="/Hoodies" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">HOODIES
+                  <Link href="/product/hoodies" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">HOODIES
                   </Link>
-                  <Link href="/Sweatshirts" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">SWEATSHIRTS
+                  <Link href="/product/sweat-shirts" className="block px-4 py-2 hover:bg-gray-100 uppercase tracking-widest">SWEATSHIRTS
                   </Link>
                 </div>
               </div>
 
-              <Link href="/Tshirt" className={`uppercase tracking-widest font-semibold ${
-                  pathname === '/Tshirt' ? 'text-blue-600' : 'hover:text-blue-600 transition'
+              <Link href="/product/t-shirt" className={`uppercase tracking-widest font-semibold ${
+                  pathname === '/product/t-shirt' ? 'text-blue-600' : 'hover:text-blue-600 transition'
                   }`}>
-                  TSHIRTS
-                  
+                  TSHIRTS  
               </Link>
 
-              <Link href="/customise" className={`uppercase tracking-widest font-semibold ${
-                  pathname === '/customise' ? 'text-blue-600' : 'hover: text-blue-600 transition'}`}>
-                    CUSTOM
+              <Link href="/home/custom-order" className={`uppercase tracking-widest font-semibold ${
+                  pathname === '/home/custom-order' ? 'text-blue-600' : 'hover:text-blue-600 transition'
+                  }`}>
+                  CUSTOM 
               </Link>
             </nav>
 

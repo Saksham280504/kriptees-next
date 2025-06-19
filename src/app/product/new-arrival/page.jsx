@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearErrors, getProduct } from '@/actions/productAction';
+import { clearErrors, getProduct } from '@/redux/actions/productAction';
 import { toast } from 'react-toastify';
 import MetaData from '@/components/Layouts/MetaData/MetaData';
 import ProductCard from '@/components/Home/ProductCard';
-import img from '@/public/ecommerce-images/NewArrTop.png';
+import img from '../../../../public/ecommerce-images/NewArrTop.png';
 import Image from 'next/image';
 
 export default function NewArrivalPage() {

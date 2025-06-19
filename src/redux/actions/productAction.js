@@ -70,6 +70,7 @@ export const getProduct = (
 
 // Get Products Details
 export const getProductDetails = (id) => {
+  console.log("Error Id: ", id);
   return async (dispatch) => {
     try {
       dispatch({

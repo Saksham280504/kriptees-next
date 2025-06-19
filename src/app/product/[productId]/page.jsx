@@ -13,14 +13,14 @@ import CricketBallLoader from "@/components/Layouts/loader/CricketBallLoader";
 import { toast } from "react-toastify";
 
 const ProductDetails = () => {
-  const { id } = useParams();
+  const { productId } = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
 
   // Track which thumbnail is active
   const [i, setI] = useState(0);
   // Track main preview image
-  const [previewImg, setPreviewImg] = useState("");
+  const [previewImg, setPreviewImg] = useState(null);
   // Product quantity and size
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("S");
@@ -35,7 +35,7 @@ const ProductDetails = () => {
   const { wishlistItems } = useSelector((state) => state.wishlist);
 
   // Check if the product is already in the wishlist
-  const isInWishlist = wishlistItems?.some((item) => item.productId === id);
+  const isInWishlist = wishlistItems?.some((item) => item.productId === productId);
 
   useEffect(() => {
     if (error) {
@@ -45,13 +45,11 @@ const ProductDetails = () => {
     if (success) {
       dispatch({ type: PRODUCT_DETAILS_RESET });
     }
-    dispatch(getProductDetails(id));
-  }, [dispatch, id, error, success]);
+    dispatch(getProductDetails(productId));
+  }, [dispatch, productId, error, success]);
 
-console.log("Product: ", product);
   useEffect(() => {
       if(product?.images?.length > 0) {
-        console.log("Images: ", product.images);
         setPreviewImg(product.images[0].url);
         setI(0);
       }
@@ -100,17 +98,17 @@ console.log("Product: ", product);
 
   // Add to Cart
   const handleAddItem = () => {
-    dispatch(addItemToCart(id, quantity, size));
+    dispatch(addItemToCart(productId, quantity, size));
     toast.success("Item Added To Cart");
   };
 
   // Toggle Wishlist: add if not added, or remove if already added
   const toggleWishlist = () => {
     if (isInWishlist) {
-      dispatch(removeItemFromWishlist(id));
+      dispatch(removeItemFromWishlist(productId));
       toast.success("Item removed from Wishlist");
     } else {
-      dispatch(addItemToWishlist(id));
+      dispatch(addItemToWishlist(productId));
       toast.success("Item Added To Wishlist");
     }
   };
@@ -128,7 +126,7 @@ console.log("Product: ", product);
   // Quick buy
   const checkoutHandler = () => {
     router.push(`/shipping?quickBuy=${JSON.stringify({
-      id,
+      productId,
       quantity,
       size,
       name: product.name,
