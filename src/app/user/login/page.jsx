@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { login, clearErrors } from "@/redux/actions/userAction";
-import CricketBallLoader from "@/components/Layouts/loader/Loader";
+import CricketBallLoader from "@/components/Layouts/loader/CricketBallLoader";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
 import { toast } from "react-toastify";
 

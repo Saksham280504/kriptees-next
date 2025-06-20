@@ -135,8 +135,6 @@ const ProductDetails = () => {
     })}`);
   };
 
-  if (loading || !product) return <CricketBallLoader />;
-
   return (
     <>
       {loading ? (
@@ -144,7 +142,7 @@ const ProductDetails = () => {
       ) : (
         <>
           <MetaData title={product.name || "Product Details"} />
-          <div className="bg-white dark:bg-gray-800 py-10 mt-4 md:mt-10">
+          <div className="bg-white py-10 mt-4 md:mt-10">
             <div className="max-w-7xl mx-auto px-4 py-4">
               {/* Two-column layout: left for images, right for details */}
               <div className="flex flex-col md:flex-row gap-6">
@@ -235,10 +233,10 @@ const ProductDetails = () => {
                     <h3 className="font-bold mb-2 uppercase text-sm">
                       Quantity
                     </h3>
-                    <div className="flex border border-gray-300 w-32">
+                    <div className="flex border-none w-32">
                       <button
                         onClick={decreaseQuantityHandler}
-                        className="w-10 h-10 flex items-center justify-center border-r"
+                        className="w-10 h-10 flex items-center justify-center text-2xl border border-gray-300 hover:border-black"
                       >
                         -
                       </button>
@@ -247,7 +245,7 @@ const ProductDetails = () => {
                       </div>
                       <button
                         onClick={increaseQuantityHandler}
-                        className="w-10 h-10 flex items-center justify-center border-l"
+                        className="w-10 h-10 flex items-center justify-center text-2xl border border-gray-300 hover:border-black"
                       >
                         +
                       </button>

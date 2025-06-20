@@ -135,12 +135,17 @@ function Header() {
 
   // === Wishlist & user icon ===
   function wishlistHandler() {
+    if(!isAuthenticated) {
+      navigate("/user/login");
+    }
+    else {
     setInfo(false);
-    navigate("/wishlist");
+    navigate("/wish-list");
+    }
   }
   function userIconClick() {
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate("/user/login");
     } else {
       setInfo(!info);
     }
@@ -428,7 +433,7 @@ function Header() {
                   </div>
                 ) : (
                   <div className="mb-8 text-center">
-                    <Link href="/login" onClick={() => setSideMenu(false)} className="uppercase text-base font-medium">SIGN IN
+                    <Link href="/user/login" onClick={() => setSideMenu(false)} className="uppercase text-base font-medium">SIGN IN
                     </Link>
                   </div>
                 )}
@@ -462,7 +467,7 @@ function Header() {
                   </button>
                   {openSubmenu === "collections" && (
                     <div className="pl-4 space-y-2 mt-2 text-sm font-normal">
-                      <Link href="/NewArrival" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">NEW ARRIVALS
+                      <Link href="/product/new-arrival" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">NEW ARRIVALS
                       </Link>
 {/*                       <Link href="/collections/kriptees-spc" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">
                         KRIPTEES SPC.
@@ -479,17 +484,17 @@ function Header() {
                   </button>
                   {openSubmenu === "winterwears" && (
                     <div className="pl-4 space-y-2 mt-2 text-sm font-normal">
-                      <Link href="/Hoodies" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOODIES
+                      <Link href="/product/hoodies" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOODIES
                       </Link>
-                      <Link href="/Sweatshirts" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">SWEATSHIRTS
+                      <Link href="/product/sweat-shirts" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">SWEATSHIRTS
                       </Link>
                     </div>
                   )}
                   {/* TSHIRTS */}
-                  <Link href="/Tshirt" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">TSHIRTS
+                  <Link href="/product/t-shirt" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">TSHIRTS
                   </Link>
                   {/* CUSTOM */}
-                  <Link href="/customise" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">CUSTOM
+                  <Link href="/home/custom-order" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">CUSTOM
                   </Link>
                   {/* ORDERS (simple link) */}
                   {isAuthenticated && (

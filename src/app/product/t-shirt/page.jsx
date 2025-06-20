@@ -7,8 +7,10 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import Head from "next/head";
 
+import MetaData from "@/components/Layouts/MetaData/MetaData";
 import ProductCard from "@/components/Home/ProductCard";
 import img from "../../../../public/ecommerce-images/TshirtTop.png"; // Adjust path if needed
+import CricketBallLoader from "@/components/Layouts/loader/CricketBallLoader";
 
 export default function Tshirt() {
   const dispatch = useDispatch();
@@ -37,10 +39,10 @@ export default function Tshirt() {
 
   return (
     <>
-      <Head>
-        <title>Kriptees - T-Shirts</title>
-      </Head>
-
+      <MetaData title="Kriptees - T-Shirts"/>
+      {loading ? (
+        <CricketBallLoader/>
+      ) : (
       <div className="Home_Page pt-14">
         {/* Top Banner */}
         <div className="w-full">
@@ -87,6 +89,7 @@ export default function Tshirt() {
           </div>
         )}
       </div>
+      )}
     </>
   );
 }

@@ -8,6 +8,7 @@ import MetaData from '@/components/Layouts/MetaData/MetaData';
 import ProductCard from '@/components/Home/ProductCard';
 import img from '../../../../public/ecommerce-images/NewArrTop.png';
 import Image from 'next/image';
+import CricketBallLoader from '@/components/Layouts/loader/CricketBallLoader';
 
 export default function NewArrivalPage() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ export default function NewArrivalPage() {
   return (
     <>
       <MetaData title="Kriptees" />
+      {loading ? (
+        <CricketBallLoader/>
+        ) : (
       <div className="Home_Page pt-14">
         {/* Top Banner */}
         <div className="w-full">
@@ -58,6 +62,8 @@ export default function NewArrivalPage() {
           </div>
         )}
       </div>
+    )}
     </>
   );
 }
+
