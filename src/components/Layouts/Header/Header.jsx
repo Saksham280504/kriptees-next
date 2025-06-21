@@ -184,7 +184,9 @@ function Header() {
           <div className="max-w-screen-xl mx-auto px-2 flex items-center justify-between">
             {/* LEFT: Mobile Menu Icon */}
             <div className="flex items-center md:hidden">
-              <button onClick={() => setSideMenu(true)}>
+              <button onClick={(e) => {
+                e.preventDefault();
+                setSideMenu(true)}}>
                 <AisaSideMenuIcon />
               </button>
             </div>
@@ -377,37 +379,27 @@ function Header() {
         </div>
 
         {/* ========== MOBILE SIDE MENU ========== */}
-        {(sideMenu || sideMenuAnimation !== "-translate-x-full") && (
-          <div className="fixed inset-0 z-50 flex md:hidden tracking-widest">
-            {/* Dark overlay (click to close) */}
-            <div
-              className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-500"
-              style={{ opacity: sideMenuAnimation === "translate-x-0" ? 1 : 0 }}
-              onClick={() => setSideMenu(false)}
-            />
-            {/* Slide-in drawer from the left */}
-            <div
-              className={`
-                relative z-10
-                transition-transform duration-700 ease-in-out
-                transform ${sideMenuAnimation}
-                w-64 max-w-[70%] bg-black text-white h-full
-              `}
-            >
+      {(sideMenu || sideMenuAnimation !== "-translate-x-full") && (
+          <aside
+    className={`
+      fixed inset-y-0 left-0 z-50
+      transform translate-x-0
+      w-1/2 max-w-md       /* 80% wide, but no more than max-w-md (~28rem) */
+      bg-black text-white
+      overflow-y-auto      /* scroll if content is taller than viewport */
+      transition-transform duration-500 ease-in-out
+    `}
+  >
               {/* Close Button (X) in top-right corner */}
               <button
-                onClick={() => setSideMenu(false)}
+                onClick={() => {
+                  setSideMenu(false);
+                  setSideMenuAnimation("-translate-x-full");
+                }
+                }
                 className="absolute top-4 right-4 text-white hover:text-gray-300"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+              ✕
               </button>
               <div className="p-4 mt-8">
                 {/* Profile Section with border below */}
@@ -422,8 +414,9 @@ function Header() {
                       <span className="uppercase text-base font-medium">{user.name}</span>
                       <button
                         onClick={() => {
-                          navigate("/account");
+                          navigate("/user/profile");
                           setSideMenu(false);
+                          setSideMenuAnimation("-translate-x-full");
                         }}
                         className="mt-1 text-xs border-b border-white uppercase text-white"
                       >
@@ -433,7 +426,11 @@ function Header() {
                   </div>
                 ) : (
                   <div className="mb-8 text-center">
-                    <Link href="/user/login" onClick={() => setSideMenu(false)} className="uppercase text-base font-medium">SIGN IN
+                    <Link href="/user/login" className="uppercase text-base font-medium" onClick={() => {
+                      setSideMenu(false);
+                      setSideMenuAnimation("-translate-x-full");
+                      }}>
+                      SIGN IN
                     </Link>
                   </div>
                 )}
@@ -443,17 +440,26 @@ function Header() {
                 style={{ fontFamily: "Montserrat", letterSpacing: "0.2rem" }}>
                   {/* Dashboard link for admin, placed right below HOME */}
                   {isAuthenticated && user?.role === "admin" && (
-                    <Link href="/admin/dashboard" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">DASHBOARD
+                    <Link href="/admin/dashboard" onClick={() => {
+                      setSideMenu(false);
+                      setSideMenuAnimation("-translate-x-full");
+                      }} className="block hover:text-gray-300">
+                      DASHBOARD
                     </Link>
                   )}
                   {/* HOME */}
-                  <Link href="/" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOME
+                  <Link href="/" onClick={() => {
+                    setSideMenu(false);
+                    setSideMenuAnimation("-translate-x-full");
+                    }} className="block hover:text-gray-300">
+                    HOME
                   </Link>
                   
                   {/* WISHLIST */}
                   <button
                     onClick={() => {
                       setSideMenu(false);
+                      setSideMenuAnimation("-translate-x-full");
                       wishlistHandler();
                     }}
                     className="block hover:text-gray-300 w-full text-left"
@@ -467,12 +473,16 @@ function Header() {
                   </button>
                   {openSubmenu === "collections" && (
                     <div className="pl-4 space-y-2 mt-2 text-sm font-normal">
-                      <Link href="/product/new-arrival" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">NEW ARRIVALS
+                      <Link href="/product/new-arrival" onClick={() => {
+                        setSideMenu(false);
+                        setSideMenuAnimation("-translate-x-full");
+                        }} className="block hover:text-gray-300">
+                        NEW ARRIVALS
                       </Link>
-{/*                       <Link href="/collections/kriptees-spc" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">
+{/*                       <Link to="/collections/kriptees-spc" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">
                         KRIPTEES SPC.
                       </Link>
-                      <Link href="/collections/anime-arc" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">
+                      <Link to="/collections/anime-arc" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">
                         ANIME ARC
                       </Link> */}
                     </div>
@@ -484,21 +494,41 @@ function Header() {
                   </button>
                   {openSubmenu === "winterwears" && (
                     <div className="pl-4 space-y-2 mt-2 text-sm font-normal">
-                      <Link href="/product/hoodies" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">HOODIES
+                      <Link href="/product/hoodies" onClick={() => {
+                        setSideMenu(false);
+                        setSideMenuAnimation("-translate-x-full");
+                        }} className="block hover:text-gray-300">
+                        HOODIES
                       </Link>
-                      <Link href="/product/sweat-shirts" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">SWEATSHIRTS
+                      <Link href="/product/sweat-shirts" onClick={() => {
+                        setSideMenu(false);
+                        setSideMenuAnimation("-translate-x-full");
+                        }} className="block hover:text-gray-300">
+                        SWEATSHIRTS
                       </Link>
                     </div>
                   )}
                   {/* TSHIRTS */}
-                  <Link href="/product/t-shirt" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">TSHIRTS
+                  <Link href="/product/t-shirt" onClick={() => {
+                    setSideMenu(false);
+                    setSideMenuAnimation("-translate-x-full");
+                    }} className="block hover:text-gray-300">
+                    TSHIRTS
                   </Link>
                   {/* CUSTOM */}
-                  <Link href="/home/custom-order" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">CUSTOM
+                  <Link href="/customise" onClick={() => {
+                    setSideMenu(false);
+                    setSideMenuAnimation("-translate-x-full");
+                  }} className="block hover:text-gray-300">
+                    CUSTOM
                   </Link>
                   {/* ORDERS (simple link) */}
                   {isAuthenticated && (
-                    <Link href="/orders" onClick={() => setSideMenu(false)} className="block hover:text-gray-300">ORDERS
+                    <Link href="/orders" onClick={() => {
+                      setSideMenu(false);
+                      setSideMenuAnimation("-translate-x-full");
+                      }} className="block hover:text-gray-300">
+                      ORDERS
                     </Link>
                   )}
                 </nav>
@@ -509,6 +539,7 @@ function Header() {
                   <button
                     onClick={() => {
                       setSideMenu(false);
+                      setSideMenuAnimation("-translate-x-full");
                       logoutUserHandler();
                     }}
                     className="text-sm hover:text-gray-300"
@@ -517,8 +548,7 @@ function Header() {
                   </button>
                 </div>
               )}
-            </div>
-          </div>
+          </aside>
         )}
 
         {/* Search Overlay */}

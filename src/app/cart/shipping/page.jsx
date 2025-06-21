@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveShippingInfo } from "@/actions/cartAction";
+import { saveShippingInfo } from "@/redux/actions/cartAction";
 import MetaData from "@/components/Layouts/MetaData/MetaData";
 import { toast } from "react-toastify";
 import { useRouter, usePathname } from "next/navigation";
@@ -11,7 +11,8 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const pathname = usePathname(); // used if you need current path, can be removed if unused
-
+  
+  const quickBuy = useSelector(s => s.cart.quickBuy);
   const { shippingInfo } = useSelector((state) => state.cart);
 
   const [address, setAddress] = useState(shippingInfo.address || "");

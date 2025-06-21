@@ -8,6 +8,7 @@ import MetaData from "@/components/Layouts/MetaData/MetaData";
 import ProductCard from "@/components/Home/ProductCard";
 import Image from "next/image";
 import sweatshirtBanner from "../../../../public/ecommerce-images/SweatShirtTop.png";
+import CricketBallLoader from "@/components/Layouts/loader/CricketBallLoader";
 
 const Sweatshirts = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ const Sweatshirts = () => {
   return (
     <>
       <MetaData title="Sweatshirts - Kriptees" />
-
+    {loading ? (
+      <CricketBallLoader/>
+    ) : (
       <div className="Home_Page pt-14 md:pt-14">
         {/* Banner */}
         <div className="w-full">
@@ -71,6 +74,7 @@ const Sweatshirts = () => {
           </div>
         )}
       </div>
+      )}
     </>
   );
 };

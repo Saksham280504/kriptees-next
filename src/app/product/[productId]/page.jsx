@@ -17,6 +17,8 @@ const ProductDetails = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  // To check if user is authenticated
+  const { isAuthenticated, user } = useSelector((state) => state.userData);
   // Track which thumbnail is active
   const [i, setI] = useState(0);
   // Track main preview image
@@ -36,6 +38,7 @@ const ProductDetails = () => {
 
   // Check if the product is already in the wishlist
   const isInWishlist = wishlistItems?.some((item) => item.productId === productId);
+  const navigate = (path) => router.push(path);
 
   useEffect(() => {
     if (error) {
@@ -125,14 +128,20 @@ const ProductDetails = () => {
 
   // Quick buy
   const checkoutHandler = () => {
-    router.push(`/shipping?quickBuy=${JSON.stringify({
+    if(!isAuthenticated) navigate("/user/login");
+    else {
+      const quickBuy = {
       productId,
       quantity,
       size,
-      name: product.name,
-      price: product.price,
-      image: product.images?.[0]?.url || "",
-    })}`);
+      name : product.name,
+      price : product.price,
+      image : product.image?.[0]?.url || "",
+    }
+
+    dispatch({ type: "SET_QUICK_BUY", payload: quickBuy });
+    navigate("/cart/shipping");
+  }
   };
 
   return (
@@ -263,7 +272,7 @@ const ProductDetails = () => {
                     </button>
                     <button
                       onClick={toggleWishlist}
-                      className="flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-300 text-black"
+                      className="flex items-center justify-center gap-2 px-4 py-2 bg-white text-black border border-gray-300 hover:border-black"
                     >
                       {isInWishlist ? (
                         <>
