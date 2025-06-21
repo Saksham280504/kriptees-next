@@ -9,22 +9,37 @@ const Cart = ({ isOpen, onClose }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
-  const [animationClass, setAnimationClass] = useState("translate-x-full");
+  // 1) “mounted” drives whether the DOM is in the tree
+  const [mounted, setMounted] = useState(false);
+  // 2) “localOpen” drives the translate-x class
+  const [localOpen, setLocalOpen] = useState(false);
+ 
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
+  // When isOpen turns true, mount immediately
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => {
-        setAnimationClass("translate-x-0");
-      }, 50);
+      setMounted(true);
     } else {
-      setAnimationClass("translate-x-full");
+      // trigger slide-out
+      setLocalOpen(false);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if(mounted) {
+      // requestAnimationFrame is even smoother than setTimeout(…,0)
+      requestAnimationFrame(() => setLocalOpen(true));
+    }
+  }, [mounted]);
+
+  function handleTransitionEnd() {
+    if(!localOpen) setMounted(false);
+  }
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -49,66 +64,57 @@ const Cart = ({ isOpen, onClose }) => {
     router.push("/login?redirect=/shipping");
   };
 
-  const goBack = () => {
-    onClose();
-  };
-
   const navigateToProduct = (productId) => {
     onClose();
     router.push(`/product/${productId}`);
   };
 
+
   useEffect(() => {
     if (isOpen) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
+      const orig = window.getComputedStyle(document.body).overflow;
       document.body.style.overflow = "hidden";
       return () => {
-        document.body.style.overflow = originalStyle;
+        document.body.style.overflow = orig;
       };
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+ if (!mounted) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex justify-end"
-      style={{ fontFamily: "Montserrat", letterSpacing: "0.1rem" }}
-    >
+    <>
+      {/* backdrop */}
       <div
-        className="absolute inset-0 bg-black bg-opacity-30 p-4 transition-opacity duration-500"
-        style={{ opacity: animationClass === "translate-x-0" ? 1 : 0 }}
         onClick={onClose}
-      />
-      <div
         className={`
-          relative z-10
-          transition-transform duration-1000 ease-in-out
-          transform ${animationClass}
-          h-full
-          w-full sm:w-3/4 md:w-1/3
+          fixed inset-0 z-40 bg-black/30
+          transition-opacity duration-500
+          ${localOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
         `}
+      />
+
+      {/* slide-panel */}
+      <div
+        onTransitionEnd={handleTransitionEnd}
+ className={`
+   fixed inset-y-0 right-0 z-50
+  w-full sm:w-3/4 md:w-1/3
+  bg-white
+  transform transition-transform duration-500 ease-in-out
+   ${localOpen ? 'translate-x-0' : 'translate-x-full'}
+ `}
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.95)",
-          boxShadow: "-4px 0 15px rgba(0,0,0,0.1)",
+          backgroundColor: 'rgba(255,255,255,0.95)',
+          boxShadow: '-4px 0 15px rgba(0,0,0,0.1)',
         }}
       >
-        <div className="bg-gray-200 p-9 shadow-inner h-full overflow-y-auto">
-          <button
-            onClick={goBack}
-            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        >
+          ✕
+        </button>
           {cartItems.length > 0 ? (
             <>
               {cartItems.map((item) => (
@@ -207,8 +213,7 @@ const Cart = ({ isOpen, onClose }) => {
             </div>
           )}
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 
